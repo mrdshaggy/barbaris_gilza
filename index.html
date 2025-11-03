@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body * {
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            background: #eee;
+            /* background-image: url(./barbaris_logo.jpg); */
+            /* background-size: 100px 100px; */
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .b_watermark {
+            position: absolute;
+            width: 50vw;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* z-index: -1; */
+        }
+
+        .b_watermark img {
+            position: absolute;
+            opacity: 0.1;
+            width: 100%;
+            margin-top: 60px;
+            margin-left: 100%;
+            /* margin-top: -200px; */
+            /* height: 100%; */
+            /* z-index: -1; */
+        }
+
+        .header {   
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            padding-top: 50px;
+            margin-bottom: 120px;
+            text-transform: uppercase;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .gilza {
+            width: 60%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            background-image: url(./shtrih1.png);
+            background-size: 60%;
+            position: relative;
+        }
+        .gilza_size {
+            position: absolute;
+            left: -60px;
+            bottom: 0;
+            transform: rotate(270deg);
+            width: 325px;
+            height: 100%;
+            text-align: center;
+        }
+        .gilza_size .long-arrow-right,
+        .gilza_size .long-arrow-left { top: -5.5px; }
+        .gilza_size .long-arrow-right { right: 3px; }
+        .gilza_size .long-arrow-left { left: 2px; }
+
+
+        .gilza_size::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            left: -1px;
+            top: 15px;
+            background: #000;
+        }
+
+        .gilza_size::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            right: 0;
+            top: 15px;
+            background: #000;
+        }
+
+
+        .gilza_head {
+            width: 100%;
+            height: 25px;
+            border-top: 2px solid #000;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+        .gilza_head:before {
+            content: '';
+            position: absolute;
+            width: 27px;
+            height: 2px;
+            background: #000;
+            top: 23px;
+            left: -2px;
+        }
+        .gilza_head:after {
+            content: '';
+            position: absolute;
+            width: 27px;
+            height: 2px;
+            background: #000;
+            top: 23px;
+            right: -2px;
+        }
+    
+        .gilza_head_inner {
+            position: absolute;
+            left: 50px;
+            width: calc(100% - 100px);
+            height: 25px;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #eee;
+        }
+
+        .gilza_head_size {
+            margin-top: -150px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .gilza_head_size::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            left: -2px;
+            top: 10px;
+            background: #000;
+        }
+
+        .gilza_head_size::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            right: -2px;
+            top: 10px;
+            background: #000;
+        }
+
+        .gilza_head_size .long-arrow-right,
+        .gilza_head_size .long-arrow-left {
+            top: -5.5px;
+        }
+
+        
+
+
+
+        .gilza_head_top_size {
+            position: absolute;
+            transform: rotate(270deg);
+            /* margin-top: -150px; */
+            width: 25px;
+            height: 100%;
+            text-align: center;
+            left: 250px;
+        }
+
+        .gilza_head_top_size .value {
+            transform: rotate(90deg) translateX(40px);
+            border-bottom: 0;
+        }
+
+        .gilza_head_top_size .value::before {
+            content: '';
+            width: 1px;
+            background: #000;
+            height: 23px;
+            position: absolute;
+            left: -13px;
+            top: 3px;
+        }
+
+        .gilza_head_top_size::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 35px;
+            left: -1px;
+            top: 3px;
+            background: #000;
+        }
+
+        .gilza_head_top_size::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 35px;
+            right: -1px;
+            top: 3px;
+            background: #000;
+        }
+
+        .gilza_head_top_size .long-arrow-right,
+        .gilza_head_top_size .long-arrow-left { top: -5.5px; }
+
+        .gilza_head_top_size .long-arrow-left { left: 2px; }
+        .gilza_head_top_size .long-arrow-right { right: 2px; }
+
+        .gilza_body {
+            width: calc(100% - 50px);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
+            position: relative;
+        }
+        .gilza_body:before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            background: #eee;
+            height: 100%;
+            left: -27px;
+            top: 2px;
+        }
+        .gilza_body:after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            background: #eee;
+            height: 100%;
+            right: -27px;
+            top: 2px;
+        }
+
+        .gilza_body_size {
+            margin-top: 380px;
+            width: 100%;
+            text-align: center;
+        }
+        .gilza_body_size .long-arrow-right,
+        .gilza_body_size .long-arrow-left {
+            top: 318.5px;
+        }
+
+        .gilza_body_size::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            left: -2px;
+            top: 295px;
+            background: #000;
+        }
+
+        .gilza_body_size::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            right: -2px;
+            top: 295px;
+            background: #000;
+        }
+
+        .gilza_body_inner {
+            position: absolute;
+            left: 25px;
+            width: calc(100% - 50px);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
+            background: #eee;
+        }
+
+        .gilza_body_inner_size {
+            width: 100%;
+            text-align: center;
+        }
+        .gilza_body_inner_size .long-arrow-right,
+        .gilza_body_inner_size .long-arrow-left {
+            top: 129.5px;
+        }
+
+
+
+        .value {
+            border-bottom: 1px solid #000;
+            position: relative;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 24px;
+        }
+
+
+        .long-arrow-right,
+        .long-arrow-left{
+            display: block;
+            margin: 30px auto;
+            width: 10px;
+            height: 10px;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+            position: absolute;
+            bottom: 0;
+        }
+        .long-arrow-left {
+            transform: rotate(-45deg);
+            left: 1px;
+        }
+        .long-arrow-right{
+           transform: rotate(135deg);
+           right: 1px;
+        }
+
+        [contenteditable] {
+            white-space: nowrap;
+        } 
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="b_watermark">
+            <img src="./barbaris_logo.jpg" alt="">
+        </div>
+        <header class="header" contenteditable>Гільза Audi 2.2T</header>
+        <section class="gilza">
+            <div class="gilza_size">
+                <div class="value" contenteditable>XX</div>
+                <div class="long-arrow-left"></div>
+                <div class="long-arrow-right"></div>
+            </div>
+            
+            <div class="gilza_head">
+                <div class="gilza_head_inner"></div>
+                <div class="gilza_head_size">
+                    <div class="value" contenteditable>XX</div>
+                    <div class="long-arrow-left"></div>
+                    <div class="long-arrow-right"></div>
+                </div>
+                <div class="gilza_head_top_size">
+                    <div class="value" contenteditable>XX</div>
+                    <div class="long-arrow-left"></div>
+                    <div class="long-arrow-right"></div>
+                </div>
+            </div>
+
+            <div class="gilza_body">
+                <div class="gilza_body_inner">
+                    <div class="gilza_body_inner_size">
+                        <div class="value" contenteditable>XX</div>
+                        <div class="long-arrow-left"></div>
+                        <div class="long-arrow-right"></div>
+                    </div>
+                </div>
+                <div class="gilza_body_size">
+                    <div class="value" contenteditable>XX</div>
+                    <div class="long-arrow-left"></div>
+                    <div class="long-arrow-right"></div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+</body>
+</html>
