@@ -389,10 +389,9 @@
     <script>
         document.getElementById("saveBtn").addEventListener("click", async () => {
         const element = document.getElementById("capture");
-        const name = document.getElementById("gilzaTitle").innerText;
         const canvas = await html2canvas(element);
         canvas.toBlob(async (blob) => {
-            const file = new File([blob], name, { type: "image/png" });
+            const file = new File([blob], "page-screenshot.png", { type: "image/png" });
             
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
             try {
@@ -408,7 +407,7 @@
             // fallback — download if Share API isn’t supported
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = name;
+            link.download = "page-screenshot.png";
             link.click();
             }
         }, "image/png");
