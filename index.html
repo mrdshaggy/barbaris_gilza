@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Barbaris Workshop</title>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <style>
         body {
             width: 100%;
@@ -20,8 +21,6 @@
 
         .wrapper {
             background: #eee;
-            /* background-image: url(./barbaris_logo.jpg); */
-            /* background-size: 100px 100px; */
             width: 100vw;
             height: 100vh;
             overflow: hidden;
@@ -35,7 +34,6 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            /* z-index: -1; */
         }
 
         .b_watermark img {
@@ -44,18 +42,15 @@
             width: 100%;
             margin-top: 60px;
             margin-left: 100%;
-            /* margin-top: -200px; */
-            /* height: 100%; */
-            /* z-index: -1; */
         }
 
         .header {   
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            padding-top: 50px;
-            margin-bottom: 120px;
+            font-size: 2rem;
+            padding-top: 30px;
+            margin-bottom: 160px;
             text-transform: uppercase;
             font-family:Verdana, Geneva, Tahoma, sans-serif;
             font-weight: 500;
@@ -80,16 +75,10 @@
             left: -60px;
             bottom: 0;
             transform: rotate(270deg);
-            width: 325px;
+            width: 318px;
             height: 100%;
             text-align: center;
         }
-        .gilza_size .long-arrow-right,
-        .gilza_size .long-arrow-left { top: -5.5px; }
-        .gilza_size .long-arrow-right { right: 3px; }
-        .gilza_size .long-arrow-left { left: 2px; }
-
-
         .gilza_size::before {
             content: '';
             position: absolute;
@@ -99,7 +88,6 @@
             top: 15px;
             background: #000;
         }
-
         .gilza_size::after {
             content: '';
             position: absolute;
@@ -109,11 +97,14 @@
             top: 15px;
             background: #000;
         }
+        .gilza_size .value::after {
+            right: 2px;
+        }
 
 
         .gilza_head {
             width: 100%;
-            height: 25px;
+            height: 18px;
             border-top: 2px solid #000;
             border-left: 2px solid #000;
             border-right: 2px solid #000;
@@ -129,7 +120,7 @@
             width: 27px;
             height: 2px;
             background: #000;
-            top: 23px;
+            top: 16px;
             left: -2px;
         }
         .gilza_head:after {
@@ -138,15 +129,15 @@
             width: 27px;
             height: 2px;
             background: #000;
-            top: 23px;
+            top: 16px;
             right: -2px;
         }
     
         .gilza_head_inner {
             position: absolute;
-            left: 50px;
-            width: calc(100% - 100px);
-            height: 25px;
+            left: 41px;
+            width: calc(100% - 82px);
+            height: 18px;
             border-left: 2px solid #000;
             border-right: 2px solid #000;
             display: flex;
@@ -183,11 +174,6 @@
             background: #000;
         }
 
-        .gilza_head_size .long-arrow-right,
-        .gilza_head_size .long-arrow-left {
-            top: -5.5px;
-        }
-
         
 
 
@@ -195,26 +181,14 @@
         .gilza_head_top_size {
             position: absolute;
             transform: rotate(270deg);
-            /* margin-top: -150px; */
-            width: 25px;
+            width: 18px;
             height: 100%;
             text-align: center;
             left: 98%;
         }
 
-        .gilza_head_top_size .value {
+        .gilza_head_top_size .value_inner {
             transform: rotate(90deg) translateX(40px);
-            border-bottom: 0;
-        }
-
-        .gilza_head_top_size .value::before {
-            content: '';
-            width: 1px;
-            background: #000;
-            height: 23px;
-            position: absolute;
-            left: -13px;
-            top: 3px;
         }
 
         .gilza_head_top_size::before {
@@ -237,11 +211,7 @@
             background: #000;
         }
 
-        .gilza_head_top_size .long-arrow-right,
-        .gilza_head_top_size .long-arrow-left { top: -5.5px; }
 
-        .gilza_head_top_size .long-arrow-left { left: 2px; }
-        .gilza_head_top_size .long-arrow-right { right: 2px; }
 
         .gilza_body {
             width: calc(100% - 50px);
@@ -274,14 +244,12 @@
             top: 2px;
         }
 
+
+
         .gilza_body_size {
             margin-top: 380px;
             width: 100%;
             text-align: center;
-        }
-        .gilza_body_size .long-arrow-right,
-        .gilza_body_size .long-arrow-left {
-            top: 318.5px;
         }
 
         .gilza_body_size::before {
@@ -304,10 +272,12 @@
             background: #000;
         }
 
+
+
         .gilza_body_inner {
             position: absolute;
-            left: 25px;
-            width: calc(100% - 50px);
+            left: 16px;
+            width: calc(100% - 32px);
             height: 300px;
             display: flex;
             align-items: center;
@@ -322,10 +292,6 @@
             width: 100%;
             text-align: center;
         }
-        .gilza_body_inner_size .long-arrow-right,
-        .gilza_body_inner_size .long-arrow-left {
-            top: 129.5px;
-        }
 
 
 
@@ -334,60 +300,75 @@
             position: relative;
             font-family:Verdana, Geneva, Tahoma, sans-serif;
             font-size: 24px;
+            position: relative;
         }
 
-
-        .long-arrow-right,
-        .long-arrow-left{
+        .value::before,
+        .value::after {
+            content: '';
             display: block;
-            margin: 30px auto;
-            width: 10px;
-            height: 10px;
+            width: 6px;
+            height: 6px;
             border-top: 1px solid #000;
             border-left: 1px solid #000;
             position: absolute;
-            bottom: 0;
+            bottom: -4px;
         }
-        .long-arrow-left {
+
+        .value::before {
             transform: rotate(-45deg);
             left: 1px;
         }
-        .long-arrow-right{
-           transform: rotate(135deg);
-           right: 1px;
+
+        .value::after {
+            transform: rotate(135deg);
+            right: 1px;
         }
 
         [contenteditable] {
             white-space: nowrap;
         } 
 
+        button {
+            margin-top: 100px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        botton:hover {
+            background: #000;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="capture">
         <div class="b_watermark">
             <img src="./barbaris_logo.jpg" alt="">
         </div>
-        <header class="header" contenteditable>Гільза Audi 2.2T</header>
+        <header class="header" contenteditable>Audi 2.2T</header>
         <section class="gilza">
             <div class="gilza_size">
                 <div class="value" contenteditable>XX</div>
-                <div class="long-arrow-left"></div>
-                <div class="long-arrow-right"></div>
             </div>
             
             <div class="gilza_head">
                 <div class="gilza_head_inner"></div>
                 <div class="gilza_head_size">
                     <div class="value" contenteditable>XX</div>
-                    <div class="long-arrow-left"></div>
-                    <div class="long-arrow-right"></div>
                 </div>
                 <div class="gilza_head_top_size">
-                    <div class="value" contenteditable>XX</div>
-                    <div class="long-arrow-left"></div>
-                    <div class="long-arrow-right"></div>
+                    <div class="value">
+                        <div class="value_inner" contenteditable>XX</div>
+                    </div>                    
                 </div>
             </div>
 
@@ -395,18 +376,27 @@
                 <div class="gilza_body_inner">
                     <div class="gilza_body_inner_size">
                         <div class="value" contenteditable>XX</div>
-                        <div class="long-arrow-left"></div>
-                        <div class="long-arrow-right"></div>
                     </div>
                 </div>
                 <div class="gilza_body_size">
                     <div class="value" contenteditable>XX</div>
-                    <div class="long-arrow-left"></div>
-                    <div class="long-arrow-right"></div>
                 </div>
             </div>
             
         </section>
+
+        <button id="download">Download as Image</button>
     </div>
+
+    <script>
+        document.getElementById("download").addEventListener("click", function () {
+          html2canvas(document.getElementById("capture")).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "page-screenshot.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+          });
+        });
+      </script>
 </body>
 </html>
