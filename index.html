@@ -6,13 +6,14 @@
     <title>Barbaris Workshop</title>
     <link rel="icon" type="image/x-icon" href="./barbaris_logo.jpg">
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="./main.js"></script>
     <style>
         body {
             width: 100%;
             height: 100%;
             padding: 0;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         body * {
@@ -382,39 +383,5 @@
         </div>
         <button id="saveBtn">Download as Image</button>
     </div>
-
-    <script>
-        document.getElementById("saveBtn").addEventListener("click", async () => {
-        const element = document.getElementById("capture");
-        const canvas = await html2canvas(element);
-
-        canvas.toBlob(async (blob) => {
-            const file = new File([blob], "barbaris-screenshot.png", { type: "image/png" });
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            try {
-                await navigator.share({
-                title: "Barbaris Screenshot",
-                text: "Saved from Barbaris Workshop",
-                files: [file],
-                });
-            } catch (err) {
-                console.log("Share canceled or failed:", err);
-            }
-            } 
-            
-            else {
-            const imgURL = URL.createObjectURL(blob);
-            const img = new Image();
-            img.src = imgURL;
-            img.style.width = "100%";
-            img.style.border = "2px solid #000";
-            img.style.marginTop = "10px";
-            document.body.appendChild(img);
-            alert("📸 Long-press the image below to Save to Photos");
-            }
-        }, "image/png");
-        });
-    </script>
 </body>
 </html>
