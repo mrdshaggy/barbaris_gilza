@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbaris Workshop</title>
+    <link rel="icon" type="image/x-icon" href="./barbaris_logo.jpg">
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <style>
         body {
@@ -23,7 +24,6 @@
             background: #eee;
             width: 100vw;
             height: 100vh;
-            overflow: hidden;
             position: relative;
         }
 
@@ -330,73 +330,89 @@
         } 
 
         button {
-            margin-top: 100px;
+            margin: 100px auto;
             padding: 10px 20px;
             font-size: 16px;
-            border: none;
+            border: 2px solid #000;
             border-radius: 8px;
-            background-color: #007bff;
-            color: white;
+            background-color: #eee;
+            color: #000;
             cursor: pointer;
             position: relative;
             z-index: 2;
         }
 
-        botton:hover {
-            background: #000;
-        }
 
     </style>
 </head>
 
 <body>
-    <div class="wrapper" id="capture">
-        <div class="b_watermark">
-            <img src="./barbaris_logo.jpg" alt="">
-        </div>
-        <header class="header" contenteditable>Audi 2.2T</header>
-        <section class="gilza">
-            <div class="gilza_size">
-                <div class="value" contenteditable>XX</div>
+    <div class="wrapper">
+        <div id="capture">
+            <div class="b_watermark">
+                <img src="./barbaris_logo.jpg" alt="">
             </div>
-            
-            <div class="gilza_head">
-                <div class="gilza_head_inner"></div>
-                <div class="gilza_head_size">
+            <header class="header" id="gilzaTitle" contenteditable>Audi 2.2T</header>
+            <section class="gilza">
+                <div class="gilza_size">
                     <div class="value" contenteditable>XX</div>
                 </div>
-                <div class="gilza_head_top_size">
-                    <div class="value">
-                        <div class="value_inner" contenteditable>XX</div>
-                    </div>                    
+                
+                <div class="gilza_head">
+                    <div class="gilza_head_inner"></div>
+                    <div class="gilza_head_size">
+                        <div class="value" contenteditable>XX</div>
+                    </div>
+                    <div class="gilza_head_top_size">
+                        <div class="value">
+                            <div class="value_inner" contenteditable>XX</div>
+                        </div>                    
+                    </div>
                 </div>
-            </div>
-
-            <div class="gilza_body">
-                <div class="gilza_body_inner">
-                    <div class="gilza_body_inner_size">
+    
+                <div class="gilza_body">
+                    <div class="gilza_body_inner">
+                        <div class="gilza_body_inner_size">
+                            <div class="value" contenteditable>XX</div>
+                        </div>
+                    </div>
+                    <div class="gilza_body_size">
                         <div class="value" contenteditable>XX</div>
                     </div>
                 </div>
-                <div class="gilza_body_size">
-                    <div class="value" contenteditable>XX</div>
-                </div>
-            </div>
-            
-        </section>
-
-        <button id="download">Download as Image</button>
+            </section>
+        </div>
+        <button id="saveBtn">Download as Image</button>
     </div>
 
+
     <script>
-        document.getElementById("download").addEventListener("click", function () {
-          html2canvas(document.getElementById("capture")).then(canvas => {
+        document.getElementById("saveBtn").addEventListener("click", async () => {
+        const element = document.getElementById("capture");
+        const name = document.getElementById("gilzaTitle").innerText;
+        const canvas = await html2canvas(element);
+        canvas.toBlob(async (blob) => {
+            const file = new File([blob], name, { type: "image/png" });
+            
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+                await navigator.share({
+                title: "Page Screenshot",
+                text: "Saved from my web app",
+                files: [file],
+                });
+            } catch (err) {
+                console.log("Share canceled or failed:", err);
+            }
+            } else {
+            // fallback — download if Share API isn’t supported
             const link = document.createElement("a");
-            link.download = "page-screenshot.png";
-            link.href = canvas.toDataURL("image/png");
+            link.href = URL.createObjectURL(blob);
+            link.download = name;
             link.click();
-          });
+            }
+        }, "image/png");
         });
-      </script>
+    </script>
 </body>
 </html>
